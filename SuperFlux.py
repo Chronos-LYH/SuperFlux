@@ -678,7 +678,7 @@ class Onset(object):
         self.activations = np.fromfile(filename, sep=sep)
 
 
-def parser(lgd=False, threshold=1.1):
+def parser(args_to_parse=None, lgd=False, threshold=1.1):
     """
     Parses the command line arguments.
 
@@ -819,13 +819,15 @@ def parser(lgd=False, threshold=1.1):
     p.add_argument('--version', action='version',
                    version='%(prog)spec 1.03 (2014-11-02)')
     # parse arguments
-    args = p.parse_args()
+    if args_to_parse is not None:
+        args = p.parse_args(args_to_parse)
+    else:
+        args = p.parse_args()
     # print arguments
     if args.verbose:
         print(args)
     # return args
     return args
-
 
 def main(args):
     """

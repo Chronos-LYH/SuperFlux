@@ -882,7 +882,7 @@ def main(args):
             if args.filter:
                 # re-create filterbank if the sample rate of the audio changes
                 if filt is None or filt.fs != w.sample_rate:
-                    filt = Filter(args.frame_size / 2, w.sample_rate,
+                    filt = Filter(int(args.frame_size / 2), w.sample_rate,
                                   args.bands, args.fmin, args.fmax, args.equal)
                     filterbank = filt.filterbank
             # spectrogram

@@ -347,7 +347,7 @@ class Spectrogram(object):
                 spec[frame % block_size] = np.abs(stft)
                 # end of a block or end of the signal reached
                 end_of_block = (frame + 1) / block_size > block
-                end_of_signal = frame == self.num_frames
+                end_of_signal = (frame + 1) == self.num_frames
                 if end_of_block or end_of_signal:
                     start = block * block_size
                     stop = min(start + block_size, self.num_frames)
@@ -355,6 +355,9 @@ class Spectrogram(object):
                     self.spec[start:stop] = filtered_spec
                     # increase the block counter
                     block += 1
+
+                    if stop == self.num_frames:
+                        break
             # next frame
         # take the logarithm
         if log:

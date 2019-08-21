@@ -822,7 +822,7 @@ def parser(lgd=False, threshold=1.1):
     args = p.parse_args()
     # print arguments
     if args.verbose:
-        print(args)
+        print args
     # return args
     return args
 
@@ -856,7 +856,7 @@ def main(args):
     # process the files
     for f in files:
         if args.verbose:
-            print('processing file %s' % f)
+            print 'processing file %s' % f
         # use the name of the file without the extension
         filename = os.path.splitext(f)[0]
         # do the processing stuff unless the activations are loaded from file
@@ -908,7 +908,7 @@ def main(args):
         o.write("%s%s" % (filename, args.det_suffix))
         # also output them to stdout if verbose
         if args.verbose:
-            print('detections:', o.detections)
+            print 'detections:', o.detections
         # continue with next file
 
 if __name__ == '__main__':
